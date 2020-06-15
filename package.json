@@ -1,0 +1,33 @@
+{
+  "name": "Email",
+  "version": "1.0.0",
+  "description": "API for sending emails",
+  "main": "index.js",
+  "scripts": {
+    "start": "netlify-lambda serve ./src/lambdas",
+    "build": "netlify-lambda build ./src/lambdas"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ziro-app/email.git"
+  },
+  "keywords": [],
+  "author": "Wermeson Rocha",
+  "license": "ISC",
+  "dependencies": {
+    "@middy/core": "^1.0.0-beta.5",
+    "@middy/http-json-body-parser": "^1.0.0-beta.5",
+    "@middy/http-multipart-body-parser": "^1.0.0",
+    "@ziro/middleware": "^1.0.4",
+    "axios": "^0.19.0",
+    "dotenv": "^8.2.0",
+    "netlify-lambda": "^1.6.3",
+    "nodemailer": "^6.4.8",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "form-data": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.40",
+    "ava": "^3.3.0"
+  }
+}
