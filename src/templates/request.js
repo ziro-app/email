@@ -4,7 +4,9 @@ const resendEmail = require('../models/resendEmail')
 const inviteCollaborator = require('../models/inviteCollaborator')
 
 const transporter = nodemailer.createTransport(smtpTransport({
-	service: 'gmail',
+	host: process.env.HOST_EMAIL,
+	port: 587,
+	secure: false,
 	auth: {
 		user: process.env.USER_EMAIL,
 		pass: process.env.USER_PASS
@@ -32,6 +34,7 @@ const request = async ({ to, subject, text, html, confirmEmail, inviteColaborato
 		}
 		else if (inviteColaborator) {
 			if (inviteColaborator.link) {
+				mailOptions['from'] = 'acesso.colaboradores@ziro.app';
 				mailOptions['subject'] = 'Convite para se tornar um colaborador';
 				mailOptions['html'] = inviteCollaborator(inviteColaborator.name, inviteColaborator.supplier, inviteColaborator.link);
 			} else throw { msg: 'Link de cadastro é obrigatório', status: 400 };
