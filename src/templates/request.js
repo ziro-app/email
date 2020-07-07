@@ -27,7 +27,7 @@ const request = async ({ to, subject, text, html, confirmEmail, inviteColaborato
 	try {
 		if (confirmEmail) {
 			if (confirmEmail.link) {
-				mailOptions['from'] = 'verify-email@ziro.app';
+				mailOptions['from'] = process.env.USER_EMAIL;
 				mailOptions['subject'] = 'Verifique seu e-mail';
 				mailOptions['html'] = resendEmail(confirmEmail.name, confirmEmail.link);
 			} else throw { msg: 'Link de confirmação é obrigatório', status: 400 };
