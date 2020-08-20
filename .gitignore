@@ -3,3 +3,4 @@ functions
 .DS_Store
 .env
 credentials.json
+credentials.js
