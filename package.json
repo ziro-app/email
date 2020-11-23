@@ -19,6 +19,7 @@
     "@middy/http-json-body-parser": "^1.0.0-beta.5",
     "@middy/http-multipart-body-parser": "^1.0.0",
     "@ziro/middleware": "^1.0.8",
+    "@ziro/theme": "^1.0.3",
     "axios": "^0.19.0",
     "dotenv": "^8.2.0",
     "netlify-lambda": "^1.6.3",

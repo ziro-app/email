@@ -12,6 +12,10 @@ const transporter = nodemailer.createTransport(smtpTransport({
     }
 }));
 
+const htmlParser = (html) => {
+    return html.replace(/\<script(.*?)\>(.*?)\<\/script\>/g, '');
+}
+
 const sendEmail = async (email, subject, text, html, name) => {
     const corpoEmail = hello(name);
 
@@ -27,7 +31,7 @@ const sendEmail = async (email, subject, text, html, name) => {
 
 const multipleRequest = async ({ to, subject, text, html, destinatarios }) => {
     if (to.length !== destinatarios.length) return { statusCode: 400, body: JSON.stringify('Número de destinatários diferente do número de e-mails', null, 4) }
-    const promises = to.map((email, index) => sendEmail(email, subject, text, html, destinatarios[index]));
+    const promises = to.map(async (email, index) => await sendEmail(email, subject, text, html, destinatarios[index]));
     try {
         const result = await Promise.all(promises);
         const accepted = [];

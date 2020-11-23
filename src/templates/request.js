@@ -2,6 +2,8 @@ const nodemailer = require('nodemailer')
 const smtpTransport = require('nodemailer-smtp-transport')
 const resendEmail = require('../models/resendEmail')
 const inviteCollaborator = require('../models/inviteCollaborator')
+const disputedBody = require('../models/disputed')
+const main = require('../models/main')
 
 const transporter = nodemailer.createTransport(smtpTransport({
 	host: process.env.HOST_EMAIL,
@@ -14,10 +16,10 @@ const transporter = nodemailer.createTransport(smtpTransport({
 }));
 
 const htmlParser = (html) => {
-	return html.replace(/\<script(.*?)\>(.*?)\<\/script\>/, '');
+	return html.replace(/\<script(.*?)\>(.*?)\<\/script\>/g, '');
 }
 
-const request = async ({ to, subject, text, html, confirmEmail, inviteColaborator }) => {
+const request = async ({ to, subject, text, html, confirmEmail, inviteColaborator, disputed }) => {
 	let mailOptions = {
 		to,
 		text,
@@ -39,10 +41,22 @@ const request = async ({ to, subject, text, html, confirmEmail, inviteColaborato
 				mailOptions['html'] = inviteCollaborator(inviteColaborator.name, inviteColaborator.supplier, inviteColaborator.link);
 			} else throw { msg: 'Link de cadastro é obrigatório', status: 400 };
 		}
+		else if (disputed) {
+			if (disputed.transaction) {
+				const body = disputedBody(disputed.transaction);
+				mailOptions['from'] = process.env.USER_EMAIL;
+				mailOptions['subject'] = 'Notificação de disputa ⚠️';
+				mailOptions['html'] = main(body);
+			} else throw { msg: 'Transação é obrigatória', status: 400 };
+		}
 		else {
+			let parsedHtml = html;
 			mailOptions['subject'] = subject;
 			mailOptions['text'] = text;
-			mailOptions['html'] = htmlParser(html);
+			while (parsedHtml.includes('script')) {
+				parsedHtml = htmlParser(parsedHtml);
+			}
+			mailOptions['html'] = parsedHtml;
 		}
 		const result = await transporter.sendMail(mailOptions);
 		const response = { accepted: result.accepted, rejected: result.rejected, messageId: result.messageId };
