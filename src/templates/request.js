@@ -46,7 +46,7 @@ const request = async ({ to, subject, text, html, confirmEmail, inviteColaborato
 				const body = disputedBody(disputed.transaction);
 				mailOptions['from'] = process.env.USER_EMAIL;
 				mailOptions['subject'] = 'Notificação de disputa ⚠️';
-				mailOptions['html'] = main(body);
+				mailOptions['html'] = main(body, 'Disputa aberta', 'Recebimento de notificação');
 			} else throw { msg: 'Transação é obrigatória', status: 400 };
 		}
 		else {
