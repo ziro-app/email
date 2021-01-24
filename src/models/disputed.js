@@ -14,8 +14,16 @@ const mountInfo = ({ seller, onBehalfOfBrand, buyerRazao, cardBrand, cardFirstFo
     </ul>
     `;
 
+const outSideMsg = outsideBase => outsideBase ? `
+<tr>
+<td style="color: #222; font-family: ${fontTitle}; font-size: 16px; line-height: 24px; padding: 20px 0 0 0;">
+    <p><strong>** A transação em questão não se encontra na base de dados. Entrar em contato com os Devs.</strong></p>
+</td>
+</tr>
+    ` : '';
+
 const disputedBody = transaction => {
-    const { transactionZoopId, initDate, fnDate } = transaction;
+    const { transactionZoopId, initDate, fnDate, outsideBase } = transaction;
     const body = `
     <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
         <tr>
@@ -35,6 +43,7 @@ const disputedBody = transaction => {
                 </div>
             </td>
         </tr>
+        ${outSideMsg(outsideBase)}
     </table>`;
     return { body, title: 'Disputa aberta', caption: 'Notificação de abertura' };
 };
