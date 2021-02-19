@@ -66,9 +66,9 @@ const htmlEmail = (body, title, caption) => `
                             </td>
                         </tr>
                         <tr style="width: 100%">
-                            <td align="center" valign="top">
-                                <table style="width: 100%" cellpadding="2">
-                                    <caption style="font-weight: bold; padding: 20px 0; margin: 0 0 20px; background: #222; color: #fff; text-transform: uppercase; font-family: ${fontTitle}"><span style="color: #FFDD00; font-size: 20px">.&nbsp;</span>${caption}<span style="color: #FFDD00; font-size: 20px">&nbsp;.</span></caption>
+                            <td align="center" valign="top" width="100%">
+                                <table width="100%" cellpadding="2">
+                                    <caption style="font-weight: bold; padding: 20px 0; margin: 0 0 20px; background: #222; color: #fff; text-transform: uppercase; font-family: ${fontTitle}; width: 100%; min-width: 600px;"><span style="color: #FFDD00; font-size: 20px">.&nbsp;</span>${caption}<span style="color: #FFDD00; font-size: 20px">&nbsp;.</span></caption>
                                 </table>
                             </td>
                         </tr>
