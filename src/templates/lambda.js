@@ -12,7 +12,7 @@ const allowed = []; // <----------- ALWAYS DEPLOY WITH NULL
 const lambda = (handler) =>
   middy(handler)
     .use(preflight)
-    .use(allowedOrigin(allowed))
+    // .use(allowedOrigin(allowed))
     .use(auth)
     .use(jsonBodyParser())
     .use(errorHandler)
