@@ -23,20 +23,19 @@ const request = async ({ to, subject, text, html, confirmEmail, inviteColaborato
 	let mailOptions = {
 		to,
 		text,
+		from: process.env.USER_EMAIL,
 		sender: process.env.USER_EMAIL,
 		replyTo: 'vitor@ziromoda.com.br'
 	};
 	try {
 		if (confirmEmail) {
 			if (confirmEmail.link) {
-				mailOptions['from'] = process.env.USER_EMAIL;
 				mailOptions['subject'] = 'Verifique seu e-mail';
 				mailOptions['html'] = resendEmail(confirmEmail.name, confirmEmail.link);
 			} else throw { msg: 'Link de confirmação é obrigatório', status: 400 };
 		}
 		else if (inviteColaborator) {
 			if (inviteColaborator.link) {
-				mailOptions['from'] = 'acesso.colaboradores@ziro.app';
 				mailOptions['subject'] = 'Convite para se tornar um colaborador';
 				mailOptions['html'] = inviteCollaborator(inviteColaborator.name, inviteColaborator.supplier, inviteColaborator.link);
 			} else throw { msg: 'Link de cadastro é obrigatório', status: 400 };
@@ -44,7 +43,6 @@ const request = async ({ to, subject, text, html, confirmEmail, inviteColaborato
 		else if (disputed) {
 			if (disputed.transaction) {
 				const { body, title, caption } = disputedBody(disputed.transaction);
-				mailOptions['from'] = process.env.USER_EMAIL;
 				mailOptions['subject'] = 'Notificação de disputa ⚠️';
 				mailOptions['html'] = main(body, title, caption);
 			} else throw { msg: 'Transação é obrigatória', status: 400 };
