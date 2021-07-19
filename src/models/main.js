@@ -29,7 +29,7 @@ const htmlEmail = (body, title, caption) => `
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta http-equiv="Content-Language" content="pt-br" />
-        <title>Suporte Ziro App</title>
+        <title>Suporte One App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <style type="text/css">
@@ -55,7 +55,7 @@ const htmlEmail = (body, title, caption) => `
                                             <div style="margin-bottom: 20px"></div>
                                             <h2
                                                 style="font-family: ${fontTitle}; color: #222; display: inline; text-transform: uppercase; background: linear-gradient(transparent 60%, rgba(255,228,0,0.75) 100%)">
-                                                ZIRO</h2>
+                                                One</h2>
                                             <h3 style="color: #222; text-transform: uppercase; font-family: ${fontTitle}">${title}</h3>
                                             <p style="color: #222; font-family: ${fontTitle}">${formatDate(new Date())}</p>
                                             <div style="margin-bottom: 20px"></div>

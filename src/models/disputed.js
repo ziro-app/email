@@ -6,7 +6,7 @@ const mountInfo = ({ seller, onBehalfOfBrand, buyerRazao, cardBrand, cardFirstFo
         <li>Seguro: ${insurance ? 'Sim' : 'Não'}</li>
         <li>Valor da transação: ${charge}</li>
         <li>Data de pagamento: ${datePaid}</li>
-        <li>Estabelecimento: ${seller === 'Ziro' ? `Ziro - ${onBehalfOfBrand}` : seller}</li>
+        <li>Estabelecimento: ${seller === 'Ziro' || seller === 'One' ? `One - ${onBehalfOfBrand}` : seller}</li>
         <li>Cliente: ${buyerRazao}</li>
         <li>Bandeira: ${cardBrand}</li>
         <li>Cartão: ${cardFirstFour}...${cardLastFour}</li>

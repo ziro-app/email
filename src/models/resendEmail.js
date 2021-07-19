@@ -9,7 +9,7 @@ const resendEmail = (name, link) => `
 
     <strong>Obrigado,<br />
 
-    Equipe do app Ziro</strong>
+    Equipe do app One</strong>
 `;
 
 module.exports = resendEmail;
