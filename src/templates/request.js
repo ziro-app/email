@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer')
 const smtpTransport = require('nodemailer-smtp-transport')
+const changeEmailBody = require('../models/changeEmail')
 const resendEmail = require('../models/resendEmail')
 const inviteCollaborator = require('../models/inviteCollaborator')
 const disputedBody = require('../models/disputed')
@@ -19,13 +20,13 @@ const htmlParser = (html) => {
 	return html.replace(/\<script(.*?)\>(.*?)\<\/script\>/g, '');
 }
 
-const request = async ({ to, subject, text, html, confirmEmail, inviteColaborator, disputed }) => {
+const request = async ({ to, subject, text, html, confirmEmail, inviteColaborator, disputed, changeEmail }) => {
 	let mailOptions = {
 		to,
 		text,
 		from: process.env.USER_EMAIL,
 		sender: process.env.USER_EMAIL,
-		replyTo: 'vitor@ziromoda.com.br'
+		replyTo: process.env.USER_EMAIL
 	};
 	try {
 		if (confirmEmail) {
@@ -46,6 +47,13 @@ const request = async ({ to, subject, text, html, confirmEmail, inviteColaborato
 				mailOptions['subject'] = 'Notificação de disputa ⚠️';
 				mailOptions['html'] = main(body, title, caption);
 			} else throw { msg: 'Transação é obrigatória', status: 400 };
+		}
+		else if (changeEmail) {
+			if (changeEmail.newEmail) {
+				const { name, newEmail, link } = changeEmail;
+				mailOptions['subject'] = 'Seu e-mail para login foi alterado';
+				mailOptions['html'] = changeEmailBody(name, newEmail, link);
+			} else throw { msg: 'Novo email é obrigatório', status: 400 };
 		}
 		else {
 			let parsedHtml = html;
