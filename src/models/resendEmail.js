@@ -1,5 +1,5 @@
 const resendEmail = (name, link) => `
-    Olá, <strong>${name ? name : ''}</strong><br />
+    Olá, <strong>${name ? name : ""}</strong><br />
 
     <p>Clique neste link para verificar seu endereço de e-mail.</p><br />
 
@@ -9,7 +9,7 @@ const resendEmail = (name, link) => `
 
     <strong>Obrigado,<br />
 
-    Equipe do app One</strong>
+    Equipe One App</strong>
 `;
 
 module.exports = resendEmail;
