@@ -50,9 +50,9 @@ const request = async ({ to, subject, text, html, confirmEmail, inviteColaborato
 		}
 		else if (changeEmail) {
 			if (changeEmail.newEmail) {
-				const { name, newEmail, link } = changeEmail;
+				const { name, newEmail } = changeEmail;
 				mailOptions['subject'] = 'Seu e-mail para login foi alterado';
-				mailOptions['html'] = changeEmailBody(name, newEmail, link);
+				mailOptions['html'] = changeEmailBody(name, newEmail);
 			} else throw { msg: 'Novo email é obrigatório', status: 400 };
 		}
 		else {
