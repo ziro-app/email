@@ -13,7 +13,8 @@ const transporter = nodemailer.createTransport(smtpTransport({
 	auth: {
 		user: process.env.USER_EMAIL,
 		pass: process.env.USER_PASS
-	}
+	},
+	pool: true
 }));
 
 const htmlParser = (html) => {
