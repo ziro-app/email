@@ -1,13 +1,8 @@
-const lambda = require('../templates/lambda')
-const request = require('../templates/request')
-const multipleRequest = require('../templates/multipleRequest')
+const lambda = require("../templates/lambda");
+const request = require("../templates/request");
 
-const sendEmail = ({ body }) => {
-    const { customEmail } = body;
-    if (customEmail) return multipleRequest(body);
-    else return request(body);
-};
+const sendEmail = ({ body }) => request(body);
 
 // export
-const handler = lambda(sendEmail)
-module.exports = { handler }
+const handler = lambda(sendEmail);
+module.exports = { handler };

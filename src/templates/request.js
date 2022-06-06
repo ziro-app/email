@@ -7,17 +7,15 @@ const disputedBody = require("../models/disputed");
 const main = require("../models/main");
 const statusUpdateBody = require("../models/statusUpdate");
 
-const userEmail = process.env.USER_EMAIL;
-const userPass = process.env.USER_PASS;
-
 const transporter = nodemailer.createTransport(
   smtpTransport({
     host: process.env.HOST_EMAIL,
     port: 587,
     secure: false,
+    tls: { rejectUnauthorized: true, minVersion: "TLSv1.2" },
     auth: {
-      user: userEmail,
-      pass: userPass,
+      user: process.env.USER_EMAIL,
+      pass: process.env.USER_PASS,
     },
     pool: true,
   })
@@ -41,9 +39,9 @@ const request = async ({
   let mailOptions = {
     to,
     text,
-    from: userEmail,
-    sender: userEmail,
-    replyTo: userEmail,
+    from: process.env.SENDER_EMAIL,
+    sender: process.env.SENDER_EMAIL,
+    replyTo: process.env.SENDER_EMAIL,
   };
   try {
     if (confirmEmail) {
