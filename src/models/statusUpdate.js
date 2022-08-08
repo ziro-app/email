@@ -29,7 +29,7 @@ const body = (retailer, supplier, value, status) => {
             <td>
                 <div style="color: #222; font-family: ${fontTitle}; font-size: 14px; line-height: 24px; padding: 5px;" >
                 Abraços, <br />
-                Equipe One App
+                Equipe VestiPago
                 </div>
             </td>
         </tr>

@@ -1,25 +1,25 @@
-const { fontTitle } = require('@ziro/theme');
+const { fontTitle } = require("@ziro/theme");
 
 const translateMonths = {
-    0: 'Janeiro',
-    1: 'Fevereiro',
-    2: 'Março',
-    3: 'Abril',
-    4: 'Maio',
-    5: 'Junho',
-    6: 'Julho',
-    7: 'Agosto',
-    8: 'Setembro',
-    9: 'Outubro',
-    10: 'Novembro',
-    11: 'Dezembro'
+  0: "Janeiro",
+  1: "Fevereiro",
+  2: "Março",
+  3: "Abril",
+  4: "Maio",
+  5: "Junho",
+  6: "Julho",
+  7: "Agosto",
+  8: "Setembro",
+  9: "Outubro",
+  10: "Novembro",
+  11: "Dezembro",
 };
 
-const formatDate = date => {
-    const dia = date.getDate() <= 9 ? `0${date.getDate()}` : date.getDate();
-    const mes = translateMonths[date.getMonth()];
-    const ano = date.getFullYear();
-    return `${dia} de ${mes} de ${ano}`;
+const formatDate = (date) => {
+  const dia = date.getDate() <= 9 ? `0${date.getDate()}` : date.getDate();
+  const mes = translateMonths[date.getMonth()];
+  const ano = date.getFullYear();
+  return `${dia} de ${mes} de ${ano}`;
 };
 
 const htmlEmail = (body, title, caption) => `
@@ -29,7 +29,7 @@ const htmlEmail = (body, title, caption) => `
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta http-equiv="Content-Language" content="pt-br" />
-        <title>Suporte One App</title>
+        <title>Suporte VestiPago</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <style type="text/css">
@@ -57,7 +57,9 @@ const htmlEmail = (body, title, caption) => `
                                                 style="font-family: ${fontTitle}; color: #222; display: inline; text-transform: uppercase; background: linear-gradient(transparent 60%, rgba(255,228,0,0.75) 100%)">
                                                 One</h2>
                                             <h3 style="color: #222; text-transform: uppercase; font-family: ${fontTitle}">${title}</h3>
-                                            <p style="color: #222; font-family: ${fontTitle}">${formatDate(new Date())}</p>
+                                            <p style="color: #222; font-family: ${fontTitle}">${formatDate(
+  new Date()
+)}</p>
                                             <div style="margin-bottom: 20px"></div>
                                             <!-- END HEADER -->
                                         </td>

@@ -9,7 +9,7 @@ const inviteCollaborator = (name, supplier, link) => `
 
     Obrigado,<br />
 
-    Equipe One App
+    Equipe VestiPago
 `;
 
 module.exports = inviteCollaborator;
